@@ -7,11 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wordsapp.databinding.FragmentLetterListBinding
 import com.example.wordsapp.databinding.FragmentWordListBinding
 
 class LetterListFragment : Fragment() {
 
-    private var _binding: FragmentWordListBinding? = null
+    private var _binding: FragmentLetterListBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private var isLinearLayoutManager = true
@@ -63,7 +64,7 @@ class LetterListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentWordListBinding.inflate(inflater, container, false)
+        _binding = FragmentLetterListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

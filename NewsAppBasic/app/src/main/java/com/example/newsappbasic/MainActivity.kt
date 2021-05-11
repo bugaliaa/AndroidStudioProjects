@@ -23,25 +23,42 @@ class MainActivity : AppCompatActivity(), NewsItemClicked {
     }
 
     private fun fetchData() {
-        val url = "http://api.mediastack.com/v1/news?access_key=1768096615c57b10ffc2a4f172acfec6&languages=en"
+        val url = "http://indianbureaucracy.com/wp-json/wp/v2/posts"
         val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null,
                 {
-                    val newsJsonArray = it.getJSONArray("articles")
+                    val newsJsonArray = it.getJSONArray("title")
                     val newsArray = ArrayList<News>()
                     for(i in 0 until newsJsonArray.length()) {
                         val newsJsonObject = newsJsonArray.getJSONObject(i)
+                        Log.d("name", "$")
                         val news = News(
-                                newsJsonObject.getString("title"),
-                                newsJsonObject.getString("url"),
-                                newsJsonObject.getString("image")
+                                newsJsonObject.getString("rendered"),
+//                                newsJsonObject.getString("url"),
+//                                newsJsonObject.getString("description"),
+//                                newsJsonObject.getString("jetpack_featured_media_url")
                         )
                         newsArray.add(news)
                     }
-
                     mAdapter.updateNews(newsArray)
+
+
+                    val imageJsonArray = it.getJSONArray("jetpack_featured_media_url")
+                    val imageArray = ArrayList<Image>()
+                    for(i in 0 until newsJsonArray.length()) {
+                        val newsJsonObject = newsJsonArray.getJSONObject(i)
+                        Log.d("name", "$")
+                        val image = Image(
+                                newsJsonObject.getString("rendered"),
+//                                newsJsonObject.getString("url"),
+//                                newsJsonObject.getString("description"),
+//                                newsJsonObject.getString("jetpack_featured_media_url")
+                        )
+                        imageArray.add(image)
+                    }
+                    mAdapter.updateNews(imageArray)
                 },
                 {
                     Log.d("VOLLEY CONDITION: ", "VOLLEY FAILED TO GET DATA")

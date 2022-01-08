@@ -5,18 +5,20 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.fractitiousassignment.databinding.ActivityMainBinding
+import com.example.fractitiousassignment.databinding.ItemGridBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var bindingMain: ActivityMainBinding
+    private lateinit var bindingGrid: ItemGridBinding
     private lateinit var viewPager2: ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        binding.parentRecyclerView.layoutManager = LinearLayoutManager(this)
+        bindingMain.parentRecyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = RecyclerViewAdapter()
-        binding.parentRecyclerView.adapter = adapter
+        bindingMain.parentRecyclerView.adapter = adapter
         viewPager2 = findViewById(R.id.viewPager_ImageSlider)
 
         val sliderItems: MutableList<SliderItem> = ArrayList()

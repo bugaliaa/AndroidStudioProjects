@@ -15,6 +15,7 @@ import com.example.musicplayer.exoplayer.callbacks.MusicPlaybackPreparer
 import com.example.musicplayer.exoplayer.callbacks.MusicPlayerEventListener
 import com.example.musicplayer.exoplayer.callbacks.MusicPlayerNotificationListener
 import com.example.musicplayer.others.Constants.MEDIA_ROOT_ID
+import com.example.musicplayer.others.Constants.NETWORK_ERROR
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.upstream.DefaultDataSource
@@ -153,6 +154,7 @@ class MusicService : MediaBrowserServiceCompat() {
                             isPlayerInitialized = true
                         }
                     }else{
+                        mediaSession.sendSessionEvent(NETWORK_ERROR, null)
                         result.sendResult(null)
                     }
                 }
